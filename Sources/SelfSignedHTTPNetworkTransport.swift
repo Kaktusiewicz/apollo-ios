@@ -1,5 +1,5 @@
 //
-//  DelegatingHTTPNetworkTransport.swift
+//  SelfSignedHTTPNetworkTransport.swift
 //  Apollo
 //
 //  Created by Michał Lisok on 19.02.2018.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// A network transport that uses HTTP POST requests to send GraphQL operations to a server, and that uses `URLSession` as the networking implementation.
-public class DelegatingHTTPNetworkTransport: NetworkTransport {
+public class SelfSignedHTTPNetworkTransport: NSObject, NetworkTransport {
   let url: URL
   public let session: URLSession
   let serializationFormat = JSONSerializationFormat.self
@@ -21,7 +21,7 @@ public class DelegatingHTTPNetworkTransport: NetworkTransport {
   ///   - configuration: A session configuration used to configure the session. Defaults to `URLSessionConfiguration.default`.
   public init(url: URL, configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
     self.url = url
-    self.session = URLSession(configuration: configuration)
+    self.session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
   }
   
   /// Send a GraphQL operation to a server and return a response.
@@ -76,4 +76,11 @@ public class DelegatingHTTPNetworkTransport: NetworkTransport {
     
     return task
   }
+}
+
+extension SelfSignedHTTPNetworkTransport: URLSessionDelegate {
+    
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+    }
 }
