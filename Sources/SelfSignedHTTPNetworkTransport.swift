@@ -19,9 +19,9 @@ public class SelfSignedHTTPNetworkTransport: NSObject, NetworkTransport {
   /// - Parameters:
   ///   - url: The URL of a GraphQL server to connect to.
   ///   - configuration: A session configuration used to configure the session. Defaults to `URLSessionConfiguration.default`.
-    public init(url: URL, configuration: URLSessionConfiguration = URLSessionConfiguration.default, delegate: URLSessionDelegate) {
+    public init(url: URL, configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
     self.url = url
-    self.session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: OperationQueue.main)
+    self.session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
   }
   
   /// Send a GraphQL operation to a server and return a response.
@@ -35,6 +35,8 @@ public class SelfSignedHTTPNetworkTransport: NSObject, NetworkTransport {
   public func send<Operation: GraphQLOperation>(operation: Operation, completionHandler: @escaping (GraphQLResponse<Operation>?, Error?) -> Void) -> Cancellable {
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
+    
+    Selector(
     
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
@@ -80,7 +82,7 @@ public class SelfSignedHTTPNetworkTransport: NSObject, NetworkTransport {
 
 extension SelfSignedHTTPNetworkTransport: URLSessionDelegate {
     
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
     }
 }
