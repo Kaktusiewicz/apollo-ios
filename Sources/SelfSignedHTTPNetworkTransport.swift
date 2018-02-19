@@ -10,9 +10,13 @@ import Foundation
 
 /// A network transport that uses HTTP POST requests to send GraphQL operations to a server, and that uses `URLSession` as the networking implementation.
 public class SelfSignedHTTPNetworkTransport: NSObject, NetworkTransport {
-  let url: URL
-  public let session: URLSession
-  let serializationFormat = JSONSerializationFormat.self
+    let url: URL
+    public lazy var session: URLSession = {
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
+        return session
+    }()
+    let serializationFormat = JSONSerializationFormat.self
+    let configuration: URLSessionConfiguration
   
   /// Creates a network transport with the specified server URL and session configuration.
   ///
@@ -21,7 +25,7 @@ public class SelfSignedHTTPNetworkTransport: NSObject, NetworkTransport {
   ///   - configuration: A session configuration used to configure the session. Defaults to `URLSessionConfiguration.default`.
     public init(url: URL, configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
     self.url = url
-    self.session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+    self.configuration = configuration
   }
   
   /// Send a GraphQL operation to a server and return a response.
@@ -35,8 +39,6 @@ public class SelfSignedHTTPNetworkTransport: NSObject, NetworkTransport {
   public func send<Operation: GraphQLOperation>(operation: Operation, completionHandler: @escaping (GraphQLResponse<Operation>?, Error?) -> Void) -> Cancellable {
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
-    
-    Selector(
     
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
