@@ -36,6 +36,7 @@
 		3C4DBD2E1DD23209005B61D0 /* check-and-run-apollo-codegen.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9FE3F3971DADBD870072078F /* check-and-run-apollo-codegen.sh */; };
 		3C4DBD2F1DD2320B005B61D0 /* check-and-run-apollo-codegen.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9FE3F3971DADBD870072078F /* check-and-run-apollo-codegen.sh */; };
 		3C4DBD301DD2320C005B61D0 /* check-and-run-apollo-codegen.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9FE3F3971DADBD870072078F /* check-and-run-apollo-codegen.sh */; };
+		78B3BBBE203ABE93000A4D9B /* DelegatingHTTPNetworkTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B3BBBD203ABE93000A4D9B /* DelegatingHTTPNetworkTransport.swift */; };
 		9F20CBC21DAF03F900A139BB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F20CBC11DAF03F900A139BB /* API.swift */; };
 		9F27D4641D40379500715680 /* JSONStandardTypeConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F27D4631D40379500715680 /* JSONStandardTypeConversions.swift */; };
 		9F295E2D1E27419800A24949 /* StarWarsServerCachingRoundtripTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F295E2B1E27418F00A24949 /* StarWarsServerCachingRoundtripTests.swift */; };
@@ -173,6 +174,7 @@
 		3C4DBCE61DD21CF0005B61D0 /* ApolloTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ApolloTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4DBCFA1DD21D53005B61D0 /* Apollo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Apollo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4DBD021DD21D53005B61D0 /* ApolloTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ApolloTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B3BBBD203ABE93000A4D9B /* DelegatingHTTPNetworkTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegatingHTTPNetworkTransport.swift; sourceTree = "<group>"; };
 		9F057D061D9BCB990042B71A /* HeroAppearsIn.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HeroAppearsIn.graphql; sourceTree = "<group>"; };
 		9F057D071D9BCB990042B71A /* HeroName.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HeroName.graphql; sourceTree = "<group>"; };
 		9F057D081D9BCB990042B71A /* TwoHeroes.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TwoHeroes.graphql; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 			children = (
 				9F69FFA81D42855900E000B1 /* NetworkTransport.swift */,
 				9F4DAF2D1E48B84B00EBFF0B /* HTTPNetworkTransport.swift */,
+				78B3BBBD203ABE93000A4D9B /* DelegatingHTTPNetworkTransport.swift */,
 				9FF90A5B1DDDEB100034C3B6 /* GraphQLResponse.swift */,
 			);
 			name = Network;
@@ -915,6 +918,7 @@
 				9F69FFA91D42855900E000B1 /* NetworkTransport.swift in Sources */,
 				9FCDFD291E33D0CE007519DC /* GraphQLQueryWatcher.swift in Sources */,
 				9FC9A9BF1E2C27FB0023C4D5 /* GraphQLResult.swift in Sources */,
+				78B3BBBE203ABE93000A4D9B /* DelegatingHTTPNetworkTransport.swift in Sources */,
 				9FC9A9D31E2FD48B0023C4D5 /* GraphQLError.swift in Sources */,
 				9FEB050D1DB5732300DA3B44 /* JSONSerializationFormat.swift in Sources */,
 				9FC9A9C51E2D6CE70023C4D5 /* Field.swift in Sources */,
