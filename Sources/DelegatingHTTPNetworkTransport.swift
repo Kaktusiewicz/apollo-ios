@@ -11,7 +11,7 @@ import Foundation
 /// A network transport that uses HTTP POST requests to send GraphQL operations to a server, and that uses `URLSession` as the networking implementation.
 public class DelegatingHTTPNetworkTransport: NetworkTransport {
   let url: URL
-  let session: URLSession
+  public let session: URLSession
   let serializationFormat = JSONSerializationFormat.self
   
   /// Creates a network transport with the specified server URL and session configuration.
