@@ -19,9 +19,9 @@ public class SelfSignedHTTPNetworkTransport: NSObject, NetworkTransport {
   /// - Parameters:
   ///   - url: The URL of a GraphQL server to connect to.
   ///   - configuration: A session configuration used to configure the session. Defaults to `URLSessionConfiguration.default`.
-  public init(url: URL, configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
+    public init(url: URL, configuration: URLSessionConfiguration = URLSessionConfiguration.default, delegate: URLSessionDelegate) {
     self.url = url
-    self.session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+    self.session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: OperationQueue.main)
   }
   
   /// Send a GraphQL operation to a server and return a response.
