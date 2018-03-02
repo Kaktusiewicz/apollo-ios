@@ -61,11 +61,10 @@ public class HTTPNetworkTransport: NetworkTransport {
   ///
   /// - Parameters:
   ///   - url: The URL of a GraphQL server to connect to.
-  ///   - configuration: A session configuration used to configure the session. Defaults to `URLSessionConfiguration.default`.
-  ///   - sessionDelegate: A session delegate used to e.g. receive authentication challenge.
-  public init(url: URL, configuration: URLSessionConfiguration = URLSessionConfiguration.default, sessionDelegate: URLSessionDelegate) {
+  ///   - session: An initialized session used to e.g. receive authentication challenge.
+  public init(url: URL, session: URLSession) {
     self.url = url
-    self.session = URLSession(configuration: configuration, delegate: sessionDelegate, delegateQueue: OperationQueue.main)
+    self.session = session
   }
   
   /// Send a GraphQL operation to a server and return a response.
